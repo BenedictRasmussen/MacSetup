@@ -1,0 +1,24 @@
+[user]
+  email = BenedictRasmussen+git@gmail.com
+  name = Ben Rasmussen
+[color]
+  ui = auto
+[core]
+  pager = less -FMRiX
+  editor = vim
+[push]
+  default = simple
+[alias]
+  dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+  co = checkout
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  h = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  pr = remote update origin --prune
+  d = diff
+  ds = diff --staged
+  flip = reset --hard HEAD^
+  amend = commit --amend
+[pull]
+  rebase = true
