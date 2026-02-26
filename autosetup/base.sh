@@ -89,8 +89,7 @@ echo
 ### OH-MY-ZSH ##
 ################
 echo "Setting up oh-my-zsh"
-ls -d ~/.oh-my-zsh
-if [[ $? -ne 0 ]]; then
+if [[ -z "$(ls -A ~/.oh-my-zsh )"]]; then
   mkdir -p ${HOME}/.oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 else 
