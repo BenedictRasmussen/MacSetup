@@ -2,12 +2,15 @@
 
 # XCode sets up a variety of tools for development on Macs
 echo "Setting up XCode"
-xcode-select --install
-echo "Entering 'sudo' to accept XCode license. Enter admin password:"
-sudo xcodebuild -license
+xcode-select -v
+if [[ $? -ne 0 ]]; then
+  xcode-select --install
+  echo "Entering 'sudo' to accept XCode license. Enter admin password:"
+  sudo xcodebuild -license
+else
+  echo "XCode already set up"
+fi
 echo "XCode complete"
-
-echo
 
 # Install Homebrew
 echo "Installing Homebrew"
@@ -62,6 +65,8 @@ vim -c 'PluginInstall' -c 'qa!'
 echo "VIM setup complete"
 
 echo
+echo "Setting up oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Setting up configuration files..."
 echo "Copying .zshrc"
