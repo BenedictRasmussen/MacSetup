@@ -1,5 +1,8 @@
 #!/bin/bash
 
+################
+#### XCODE #####
+################
 # XCode sets up a variety of tools for development on Macs
 echo "Setting up XCode"
 xcode-select -v
@@ -12,7 +15,9 @@ else
 fi
 echo "XCode complete"
 
-# Install Homebrew
+################
+### HOMEBREW ###
+################
 echo "Installing Homebrew"
 brew -v
 if [[ $? -ne 0 ]]; then
@@ -25,6 +30,9 @@ echo "Homebrew complete"
 
 echo
 
+################
+##### GIT ######
+################
 echo "Checking git"
 git -v
 if [[ $? -ne 0 ]]; then
@@ -37,10 +45,18 @@ echo "Git complete"
 
 echo
 
+################
+# HAMMERSPOON ##
+################
 echo "Installing Hammerspoon"
-brew install --cask hammerspoon
-mkdir -p ${HOME}/.hammerspoon # This should already exist, but just in case
-cp -R ./config/.hammerspoon ${HOME}/
+brew info hammerspoon
+if [[ $? -ne 0 ]]; then
+  brew install --cask hammerspoon
+  mkdir -p ${HOME}/.hammerspoon # This should already exist, but just in case
+  cp -R ./config/.hammerspoon ${HOME}/
+else 
+  echo "Hammerspoon already installed"
+fi
 echo "Hammerspoon complete"
 
 echo
@@ -55,6 +71,9 @@ echo "Code directory created"
 
 echo
 
+################
+##### VIM ######
+################
 echo "Setting up VIM"
 if [[ ! -d ~/.vim/bundle/Vundle.vim/ ]]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -65,8 +84,18 @@ vim -c 'PluginInstall' -c 'qa!'
 echo "VIM setup complete"
 
 echo
+
+################
+### OH-MY-ZSH ##
+################
 echo "Setting up oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+ls -d ~/.oh-my-zsh
+if [[ $? -ne 0 ]]; then
+  mkdir -p /Users/rasmussb/.oh-my-zsh
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else 
+  echo "oh-my-zsh already installed"
+fi
 
 echo "Setting up configuration files..."
 echo "Copying .zshrc"
