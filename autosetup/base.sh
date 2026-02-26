@@ -91,7 +91,7 @@ echo
 echo "Setting up oh-my-zsh"
 ls -d ~/.oh-my-zsh
 if [[ $? -ne 0 ]]; then
-  mkdir -p /Users/rasmussb/.oh-my-zsh
+  mkdir -p ${HOME}/.oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 else 
   echo "oh-my-zsh already installed"
